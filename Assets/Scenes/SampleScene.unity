@@ -202,8 +202,8 @@ Transform:
   m_GameObject: {fileID: 32160871}
   serializedVersion: 2
   m_LocalRotation: {x: 0.06872122, y: -0, z: -0, w: 0.9976359}
-  m_LocalPosition: {x: 0.45, y: 0.77, z: 0.12}
-  m_LocalScale: {x: 13.3581085, y: 0.9591, z: 1}
+  m_LocalPosition: {x: -0.1928, y: -3.3057, z: -0.4504}
+  m_LocalScale: {x: 26.072056, y: 0.52642006, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -356,6 +356,7 @@ GameObject:
   - component: {fileID: 891633509}
   - component: {fileID: 891633510}
   - component: {fileID: 891633511}
+  - component: {fileID: 891633512}
   m_Layer: 0
   m_Name: anmator
   m_TagString: Untagged
@@ -451,6 +452,18 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &891633512
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 891633508}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb9555b7c67355f43aeae99e5a215af7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1931525955
 GameObject:
   m_ObjectHideFlags: 0
@@ -575,7 +588,7 @@ Transform:
   m_GameObject: {fileID: 1931525955}
   serializedVersion: 2
   m_LocalRotation: {x: 0.06872122, y: -0, z: -0, w: 0.9976359}
-  m_LocalPosition: {x: 4.41, y: 2.19, z: 0.34}
+  m_LocalPosition: {x: 6.98, y: -1.17, z: -0.13}
   m_LocalScale: {x: 5.296445, y: 3.2636929, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -632,7 +645,7 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 3.5
-  m_Material: {fileID: 6200000, guid: 971c8c8ba22f5a8429ef34f7c09626c3, type: 2}
+  m_Material: {fileID: 6200000, guid: fd88a3462caaedc4ba5c40447af4dd10, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -657,6 +670,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movespeed: 6
   jumpforce: 13
+  dashspeed: 15
+  dashDuration: 0.25
+  dashtime: 0
+  dashCooldown: 0
+  xinput: 0
   Groudcheck: 1.36
   whatisground:
     serializedVersion: 2

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Windows;
 
-public class NewBehaviourScript : MonoBehaviour
+public class player : MonoBehaviour
 {
     private Rigidbody2D rb;
     private Animator anim;
@@ -11,6 +11,32 @@ public class NewBehaviourScript : MonoBehaviour
 
     [SerializeField]private float movespeed;
     [SerializeField] private float jumpforce;
+
+
+
+
+    [Header("Dash info")]
+    [SerializeField] private float dashspeed;
+    [SerializeField] private float dashDuration;
+    [SerializeField] private float dashtime;
+
+    [SerializeField] private float dashCooldown;
+    private float dashCooldownTimer;
+
+
+
+    [Header("Attack info")]
+    private bool isAttacking;
+    private int coumoCounter;
+
+
+
+    [SerializeField]
+
+
+
+
+
     private float xinput;
 
     private int FaceDir = 1;
@@ -39,10 +65,28 @@ public class NewBehaviourScript : MonoBehaviour
         Movement();
         CheckInput();
         CollisionChecks();
+        dashtime = dashtime - Time.deltaTime;
+
+        if (UnityEngine.Input.GetKeyDown(KeyCode.LeftShift))
+        {
+            dashtime = dashDuration;
+        }
+
+
         FlipControler();
         AnimatorControllers();
 
     }
+
+
+
+    public void AttackOver() {
+
+        isAttacking = false;
+    }
+
+
+
 
     private void CollisionChecks()
     {
@@ -59,11 +103,32 @@ public class NewBehaviourScript : MonoBehaviour
         {
             Jump();
         }
+
+
+        if (UnityEngine.Input.GetKeyDown(KeyCode.Mouse0))
+        {
+            isAttacking = true;
+        }
+
+
     }
+
+
+
+
+
+
 
     private void Movement()
     {
-        rb.velocity = new Vector2(xinput * movespeed, rb.velocity.y);
+        if(dashtime>0) {
+            rb.velocity = new Vector2(xinput * dashspeed,0);
+        }
+        else
+        {
+            rb.velocity = new Vector2(xinput * movespeed, rb.velocity.y);
+        }
+
     }
 
     private void Jump()
@@ -80,7 +145,9 @@ public class NewBehaviourScript : MonoBehaviour
         bool ismove = rb.velocity.x != 0;
         anim.SetBool("Ismoveing", ismove);
         anim.SetBool("isGrounded", IsGrounded);
-
+        anim.SetBool("If_dash", dashtime>0);
+        anim.SetBool("is_attack", isAttacking);
+        anim.SetInteger("comboCounter", coumoCounter);
         anim.SetFloat("Y_velocity",rb.velocity.y);
 
 
@@ -112,7 +179,6 @@ public class NewBehaviourScript : MonoBehaviour
     private void OnDrawGizmos()
     {
         Gizmos.DrawLine(transform.position,new Vector3(transform.position.x, transform.position.y- Groudcheck));
-
 
     }
 
